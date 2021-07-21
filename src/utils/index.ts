@@ -15,9 +15,7 @@ export function fetchGBK2 (url: string) {
     {
       const reader = new FileReader();
       reader.onload = function(e) {
-        var text = reader.result;
-        console.log(text)
-        resolve(text)
+        resolve(reader.result)
       }
       reader.readAsText(blob, 'GBK')
   }
