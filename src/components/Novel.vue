@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { fetchGBK, fetchGBK2, parseNovel } from '../utils/index'
+import { fetchGBK, fetchGBK2, parseNovel, Novel } from '../utils/index'
 
 export default defineComponent({
   setup() {
@@ -19,28 +19,28 @@ export default defineComponent({
     return {
       chapters: [],
       contents: [],
-      index: 0
+      index: 0,
+      novel: null
     } as {
       chapters: string[],
       contents: string[],
       index: number
+      novel: any
     }
   },
   computed: {
     content (): string {
-      return (this.contents[this.index] || '').replace(/\n/g, '<br>')
+      if (!this.novel) return ''
+      const content = this.novel.get(Number(this.index))
+      // console.log(this.index, content)
+      return content.replace(/\n/g, '<br>')
     }
   },
   async mounted () {
     const data = await fetchGBK(this.url)
     // console.log(data)
-    const { contents, chapters } = parseNovel(data)
-    console.log(chapters.length, contents.length)
-    console.log(chapters, contents)
-    this.chapters = chapters
-    this.contents = contents
-    // const data2 = await fetchGBK2(this.url)
-    // console.log(data2)
+    this.novel = new Novel(data)
+    this.chapters = this.novel.chapters
   }
 })
 </script>

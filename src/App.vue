@@ -1,7 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
-  <Novel :url="`http://127.0.0.1:8080/novel`" />
+  <Novel :url="`http://127.0.0.1:8080/三界主宰.txt`" />
 </template>
 
 <script lang="ts">
