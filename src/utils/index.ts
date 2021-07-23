@@ -1,8 +1,8 @@
-export function fetchGBK (url: string) {
+export function fetchGBK (url: string, charset = "GBK") {
   return fetch(url)
     .then(response => response.arrayBuffer())
     .then(buffer => {
-      let decoder = new TextDecoder("GBK");
+      let decoder = new TextDecoder(charset);
       let text = decoder.decode(buffer);
       return text
     });
