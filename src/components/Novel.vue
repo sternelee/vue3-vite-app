@@ -58,7 +58,7 @@ export default defineComponent({
       if (dom) {
         dom.scrollTop = 0
       }
-      console.log(dom)
+      // console.log(dom)
     }
   },
   async mounted () {
